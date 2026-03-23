@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Tauri App",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/tauri",
+      "args": [],
+      "preLaunchTask": "Run Tauri Dev",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Vite Frontend (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:1420",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "pathMapping": {
+        "/": "${workspaceFolder}",
+        "/src": "${workspaceFolder}/src"
+      },
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**",
+        "**/@vite/**",
+        "**/dist/**",
+        "**/.pnpm/**"
+      ],
+      "smartStep": true,
+      "preLaunchTask": "Run Vite Dev"
+    }
+  ],
+  "compounds": []
+}

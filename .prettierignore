@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Build outputs
+dist
+build
+target
+src-tauri/target
+
+# Generated files
+*.log
+.vite
+.tauri
+
+# Config
+.env
+.env.local
+
+# Custom
+src-tauri/**
+.vscode/*
+README.md
+.prettierrc
+package.json
+postcss.config.js
+tailwind.config.js
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+src/vite-env.d.ts

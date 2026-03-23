@@ -1,0 +1,45 @@
+{
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "endOfLine": "auto",
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "singleAttributePerLine": false,
+    "bracketSameLine": false,
+    "proseWrap": "always",
+    "htmlWhitespaceSensitivity": "css",
+    "vueIndentScriptAndStyle": true,
+    "embeddedLanguageFormatting": "auto",
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": true,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ],
+    "importOrder": [
+        "^@tauri-apps/(.*)$",
+        "^vue(.*)$",
+        "^@/(.*)$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "overrides": [
+        {
+            "files": "*.md",
+            "options": {
+                "printWidth": 80,
+                "proseWrap": "always"
+            }
+        },
+        {
+            "files": "*.json",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}
