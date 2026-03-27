@@ -4,4 +4,5 @@ export type Settings = {
   defaultSummaryCard: string
   defaultProjectView: string | null
   defaultHiddenTaskColumns: string[]
+  showDashboard: boolean
 }

@@ -19,6 +19,7 @@
   "common": {
     "all": "Vše",
     "allProjects": "Všechny projekty",
+    "task": "task",
     "cancel": "Zrušit",
     "close": "Zavřít",
     "column": "Sloupec",
@@ -35,7 +36,15 @@
   "dashboard": {
     "overviewAndProjects": "Přehled a projekty",
     "tasks": "Tasky",
-    "tags": "Tagy"
+    "tags": "Tagy",
+    "states": "Stavy",
+    "priorities": "Priority",
+    "projects": "Projekty",
+    "stateAndPriority": "Stavy & Priority",
+    "tagAndProject": "Tagy & Projekty",
+    "hideSummary": "Skrýt přehled",
+    "showSummary": "Zobrazit přehled",
+    "hidden": "Přehled je skrytý"
   },
   "dialogs": {
     "closeWithoutSaving": "Ukončit bez uložení",
@@ -72,8 +81,6 @@
     "deleteDocument": "Smazat dokument",
     "description": "Popis",
     "descriptionPlaceholder": "Podrobný popis...",
-    "dimensions": "Rozměry",
-    "dimensionsPlaceholder": "Rozměry",
     "documentName": "Název dokumentu",
     "documentPath": "Cesta k dokumentu",
     "documents": "Dokumenty",
@@ -82,8 +89,6 @@
     "editDocumentName": "Upravit název dokumentu",
     "edited": "Upraveno",
     "editTask": "Upravit task",
-    "free": "Ušetřeno",
-    "freeTooltip": "Položka byla získána zdarma",
     "group": "Skupina",
     "groupTooltip": "Vizuální seskupení položek v tabulkách do rozbalitelných podskupin",
     "name": "Název",
@@ -100,19 +105,13 @@
     "selectGroup": "Vyberte skupinu",
     "selectTags": "Vyberte tagy",
     "tags": "Tagy",
-    "technicalDocument": "Technický list",
-    "type": "Typ",
-    "typePlaceholder": "Typ tasku",
     "url": "URL",
     "urlPlaceholder": "https://..."
   },
   "header": {
     "addNewTask": "Přidat nový task",
-    "discardChanges": "Vrátit změny",
-    "saveChanges": "Uložit změny",
     "selectProject": "Vyberte projekt",
-    "selectedProject": "Vybraný projekt",
-    "unsavedChanges": "Neuložené změny"
+    "selectedProject": "Vybraný projekt"
   },
   "messages": {
     "allDeletedItemsRestored": "Všechny smazané tasky byly obnoveny",
@@ -143,15 +142,15 @@
   "settings": {
     "projectViewDefault": "Výchozí projekt",
     "projectViewDefaultTooltip": "Projekt, který se zobrazí při otevření aplikace",
-    "currencySymbol": "Symbol měny",
-    "currencySymbolPlaceholder": "Kč, $, €...",
     "hiddenTaskColumnsDefault": "Skryté sloupce v tabulce tasků",
     "hiddenTaskColumnsDefaultTooltip": "Sloupce, které jsou ve výchozím zobrazování tabulky tasků skryté",
     "hiddenTaskColumnsValidation": "Nelze skrýt všechny sloupce. Ponechte alespoň jeden sloupec zobrazený.",
     "language": "Jazyk",
     "summaryCardDefault": "Výchozí karta přehledu",
     "summaryCardDefaultTooltip": "Karta, která se zobrazí jako první v přehledu statistik",
-    "tableGroupDefaultState": "Rozbalené podskupiny ve výchozím stavu",
+    "showDashboard": "Zobrazit přehled statistik",
+    "showDashboardTooltip": "Zda je přehled statistik zobrazený nebo skrytý",
+    "tableGroupDefaultState": "Výchozí stav skupin",
     "tableGroupDefaultStateTooltip": "Zda jsou podskupiny v tabulkách ve výchozím stavu rozbalené nebo sbalené",
     "title": "Nastavení"
   },
@@ -174,44 +173,34 @@
     "tagTitle": "Upravit tag"
   },
   "summary": {
-    "average": "Průměr",
-    "avgDaily": "Průměr denně",
-    "avgItems": "Ø položek",
-    "avgWeekly": "Průměr týdně",
     "bar": "Sloupec",
-    "basedOnTimePeriod": "Vzhledem k časovému období",
     "projects": "projektů",
     "chartType": "Typ grafu",
     "count": "Počet",
-    "daily": "Denní",
-    "day": "Den",
-    "days": "dní",
     "donut": "Donut",
-    "groupBy": "Seskupit podle",
-    "items": "Položky",
+    "expensesByTags": "Dle tagů",
+    "tasksByTagsCount": "Počet dle tagů",
+    "expensesByStates": "Dle stavů",
+    "tasksByStateCount": "Počet dle stavů",
+    "expensesByPriorities": "Dle priorit",
+    "tasksByPriorityCount": "Počet dle priorit",
+    "expensesByProjects": "Dle projektů",
+    "tasksByProjectCount": "Počet dle projektů",
+    "states": "stavů",
+    "priorities": "priorit",
     "line": "Line",
-    "month": "Měsíc",
-    "monthly": "Měsíční",
-    "months": "měsíců",
-    "statisticsTitle": "Statistiky tasků",
     "tags": "tagů",
-    "total": "Celkem",
-    "types": "typů",
-    "visit": "návštěva",
-    "visits": "Návštěvy",
-    "week": "Týden",
-    "weekly": "Týdenní",
-    "weeks": "týdnů"
+    "total": "Celkem"
   },
   "table": {
     "allExpenses": "Všechny výdaje",
     "allInOneTable": "Vše v jedné tabulce",
-    "byProjects": "Dle projektů",
     "byPriority": "Dle priority",
     "byState": "Dle stavu",
     "byTags": "Dle tagů",
     "clearFiltersAndSorting": "Vymazat filtry a řazení",
     "collapseTable": "Zabalit tabulku",
+    "count": "Počet",
     "deleted": "Smazané",
     "editedTask": "Upravený task",
     "filterByName": "Filtrovat podle názvu",
@@ -219,6 +208,7 @@
     "hiddenColumns": "Skryté sloupce",
     "hiddenPlaceholder": "Skryté",
     "items": "položek",
+    "kanban": "Kanban",
     "newTask": "Nový task",
     "noTag": "Bez tagu",
     "restoreAll": "Obnovit vše",
@@ -230,6 +220,15 @@
   },
   "validation": {
     "projectRequired": "Projekt je povinný",
-    "nameRequired": "Nadpis je povinný"
+    "nameRequired": "Nadpis je povinný",
+    "currencyRequired": "Symbol měny je povinný"
+  },
+  "kanban": {
+    "todo": "K udělání",
+    "doing": "Probíhá",
+    "done": "Hotovo",
+    "moveLeft": "Přesunout doleva",
+    "moveRight": "Přesunout doprava",
+    "dropHere": "Sem přetáhnout task"
   }
 }

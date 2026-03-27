@@ -10,6 +10,7 @@
     useDialog,
     useMessage,
   } from 'naive-ui'
+  import { storeToRefs } from 'pinia'
 
   import { computed, onMounted, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
@@ -26,7 +27,7 @@
   const message = useMessage()
   const dialog = useDialog()
   const route = useRoute()
-  const { projectView } = useTasksStore()
+  const { projectView } = storeToRefs(useTasksStore())
 
   const { props } = defineProps<{
     props: BulkEditProps
@@ -42,7 +43,7 @@
   const scopeChoices = computed(() => [
     {
       id: 'current-project',
-      label: t('spendingBulkEditForm.currentProject', { name: projectView }),
+      label: t('spendingBulkEditForm.currentProject', { name: projectView.value }),
     },
     {
       id: 'all-projects',

@@ -4,6 +4,7 @@
   const {
     stat,
     showPercent = true,
+
     showCount = true,
     extraInfo,
   } = defineProps<{

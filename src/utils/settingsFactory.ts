@@ -11,5 +11,6 @@ export function createSettings(data?: Partial<Settings>): Settings {
     defaultProjectView: data?.defaultProjectView ?? DEFAULT_SETTINGS.defaultProjectView,
     defaultHiddenTaskColumns:
       data?.defaultHiddenTaskColumns ?? DEFAULT_SETTINGS.defaultHiddenTaskColumns,
+    showDashboard: data?.showDashboard ?? DEFAULT_SETTINGS.showDashboard,
   }) as Settings
 }

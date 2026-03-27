@@ -15,7 +15,7 @@
   import { useSettingsFormValidation } from '@/composables/useSettingsFormValidation'
   import { DEFAULT_SETTINGS } from '@/constants/defaultSettings'
   import { LANGUAGES } from '@/constants/languages'
-  import { SUMMARY_CARDS } from '@/constants/summaryCards'
+  import { SUMMARY_SLIDES } from '@/constants/summaryCards'
   import { useTasksStore } from '@/stores/tasksStore'
   import { Settings } from '@/types/Settings'
 
@@ -95,7 +95,7 @@
           </template>
           <n-select
             v-model:value="tempSettings.defaultSummaryCard"
-            :options="SUMMARY_CARDS.map((card) => ({ label: t(card.title), value: card.id }))"
+            :options="SUMMARY_SLIDES.map((slide) => ({ label: t(slide.title), value: slide.id }))"
           />
         </n-form-item>
 
@@ -137,6 +137,18 @@
               {{ t('settings.hiddenTaskColumnsValidation') }}
             </div>
           </div>
+        </n-form-item>
+
+        <n-form-item>
+          <template #label>
+            <div class="flex items-center">
+              <span>{{ t('settings.showDashboard') }}</span>
+              <div class="ms-2">
+                <tooltip :text="t('settings.showDashboardTooltip')" />
+              </div>
+            </div>
+          </template>
+          <SelectBool v-model:value="tempSettings.showDashboard" />
         </n-form-item>
       </n-form>
 

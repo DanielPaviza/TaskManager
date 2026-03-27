@@ -6,26 +6,44 @@
   import { NInput, NSelect } from 'naive-ui'
 
   import { computed, ref, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
+  import KanbanBoard from '@/components/tasksList/KanbanBoard.vue'
   import { useTasksColumns } from '@/composables/task/useTasksColumns'
   import { useTasksViews } from '@/composables/task/useTasksViews'
   import { useViewSort } from '@/composables/useViewSort'
   import router from '@/router'
   import { TaskList, TaskListKey } from '@/types/TaskList'
 
+  const { t } = useI18n()
   const { columns: allColumns } = useTasksColumns()
 
-  // Use new composables for views and sorting
   const { nameSortState, countSortState, toggleNameSort, toggleCountSort, getSortedCategories } =
     useViewSort()
-  const { createViews } = useTasksViews() // stores and allTags used internally
+  const { createViews } = useTasksViews()
 
-  const VIEWS = computed<Record<TaskListKey, TaskList>>(() => createViews(nameSortState.value))
+  const VIEWS = computed<Record<Exclude<TaskListKey, 'kanban'>, TaskList>>(() =>
+    createViews(nameSortState.value),
+  )
 
-  const defaultViewKey = 'allInOne' as TaskListKey
-  const defaultView: TaskList = VIEWS.value[defaultViewKey]
+  const defaultViewKey = 'kanban' as TaskListKey
+  const defaultView: TaskList = VIEWS.value['allInOne']
   const currentViewKey = ref<TaskListKey>(defaultViewKey)
-  const currentView = computed<TaskList>(() => VIEWS.value[currentViewKey.value])
+  const currentView = computed<TaskList>(
+    () =>
+      VIEWS.value[currentViewKey.value as Exclude<TaskListKey, 'kanban'>] ??
+      VIEWS.value['allInOne'],
+  )
+
+  const isKanban = computed(() => currentViewKey.value === 'kanban')
+
+  // Navigation buttons: kanban first, then table views
+  const navButtons = computed(() => [
+    { id: 'kanban' as TaskListKey, label: t('table.kanban') },
+    ...Object.values(VIEWS.value)
+      .filter((v) => v.id !== 'kanban')
+      .map((v) => ({ id: v.id, label: v.label })),
+  ])
 
   // Persistent per-view name filters
   const nameFiltersByView = ref<Record<TaskListKey, string>>({
@@ -33,10 +51,11 @@
     byPriority: '',
     byState: '',
     byTags: '',
+    kanban: '',
   })
 
   const nameFilter = computed<string>({
-    get: () => nameFiltersByView.value[currentViewKey.value],
+    get: () => nameFiltersByView.value[currentViewKey.value] ?? '',
     set: (value: string) => {
       nameFiltersByView.value[currentViewKey.value] = value
     },
@@ -80,6 +99,7 @@
   }
 
   const filteredSortedCategories = computed(() => {
+    if (isKanban.value || !currentView.value) return []
     const filteredCategories = currentView.value.categories.filter((category) => {
       const filterValue = nameFilter.value.toLowerCase()
       return category.toLowerCase().includes(filterValue)
@@ -91,7 +111,7 @@
   watch(
     currentView,
     (newView, oldView) => {
-      hideColumnsOnViewChange(newView, oldView)
+      if (!isKanban.value) hideColumnsOnViewChange(newView, oldView)
     },
     { immediate: true },
   )
@@ -103,8 +123,8 @@
     </h2>
 
     <div class="flex items-end justify-between mb-4">
-      <ButtonNavigation v-model:selected-id="currentViewKey" :buttons="Object.values(VIEWS)" />
-      <div class="flex items-end gap-2">
+      <ButtonNavigation v-model:selected-id="currentViewKey" :buttons="navButtons" />
+      <div v-if="!isKanban" class="flex items-end gap-2">
         <div class="">
           <div class="text-[14px] ms-2 font-semibold text-nowrap text-blue">
             {{ $t('table.hiddenColumns') }}
@@ -155,37 +175,49 @@
     </div>
   </div>
 
-  <div v-if="currentView.categories?.length > 0" class="pb-10">
-    <div v-if="currentView.showFilter">
-      <label class="text-[14px] ms-1 font-semibold text-nowrap text-blue">
-        {{ $t('table.filterByName') }}
-      </label>
-      <n-input v-model:value="nameFilter" :placeholder="$t('table.filterPlaceholder')" clearable />
-    </div>
-    <TasksCategoryTable
-      v-for="category in filteredSortedCategories"
-      :key="category"
-      :title="category"
-      :tasks="currentView.getTasks(category)"
-      :columns="columns"
-      :is-collapsed-default="currentView.id != defaultView.id"
-    >
-      <template #default="{ data, title, columns: cols, isCollapsedDefault: collapsed }">
-        <TasksDataTable
-          :data="data"
-          :columns="cols"
-          :title="title"
-          :is-collapsed-default="collapsed"
-          :can-open-settings="currentView.id !== defaultView.id"
-          @open-settings="openTaskBulkEdit(title)"
-        />
-      </template>
-    </TasksCategoryTable>
+  <!-- Kanban view -->
+  <div v-if="isKanban" class="pb-10">
+    <KanbanBoard />
   </div>
 
-  <div v-else class="text-center text-blue py-8 text-xl">
-    {{ $t('common.noRecordsFound') }}
-  </div>
+  <!-- Table views -->
+  <template v-else>
+    <div v-if="currentView.categories?.length > 0" class="pb-10">
+      <div v-if="currentView.showFilter">
+        <label class="text-[14px] ms-1 font-semibold text-nowrap text-blue">
+          {{ $t('table.filterByName') }}
+        </label>
+        <n-input
+          v-model:value="nameFilter"
+          :placeholder="$t('table.filterPlaceholder')"
+          clearable
+        />
+      </div>
+      <TasksCategoryTable
+        v-for="category in filteredSortedCategories"
+        :key="category"
+        :title="category"
+        :tasks="currentView.getTasks(category)"
+        :columns="columns"
+        :is-collapsed-default="currentView.id != defaultView.id"
+      >
+        <template #default="{ data, title, columns: cols, isCollapsedDefault: collapsed }">
+          <TasksDataTable
+            :data="data"
+            :columns="cols"
+            :title="title"
+            :is-collapsed-default="collapsed"
+            :can-open-settings="currentView.id !== defaultView.id"
+            @open-settings="openTaskBulkEdit(title)"
+          />
+        </template>
+      </TasksCategoryTable>
+    </div>
+
+    <div v-else class="text-center text-blue py-8 text-xl">
+      {{ $t('common.noRecordsFound') }}
+    </div>
+  </template>
 
   <!-- Deleted Tasks Section -->
   <div class="my-8">

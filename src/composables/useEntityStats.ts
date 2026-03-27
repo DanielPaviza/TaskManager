@@ -7,6 +7,7 @@ export type SortType = 'alphabetical' | 'count-desc'
 export interface EntityStat {
   name: string
   count: number
+  percent: number
 }
 
 export interface EntityStatsOptions {
@@ -20,17 +21,15 @@ export function useEntityStats(options: EntityStatsOptions) {
   const { tasks, entities, filterFn, sortBy } = options
 
   const entityStats = computed<EntityStat[]>(() => {
-    return entities.value.map((entity) => {
+    const raw = entities.value.map((entity) => {
       const entityItems = tasks.value.filter((s: Task) => filterFn(s, entity))
-      const count = entityItems.length
-
-      const stat: EntityStat = {
-        name: entity,
-        count,
-      }
-
-      return stat
+      return { name: entity, count: entityItems.length }
     })
+    const total = raw.reduce((sum, s) => sum + s.count, 0)
+    return raw.map((s) => ({
+      ...s,
+      percent: total > 0 ? Math.round((s.count / total) * 100) : 0,
+    }))
   })
 
   const sortedStats = computed<EntityStat[]>(() => {

@@ -67,8 +67,17 @@ export function useTasksViews() {
     ...defaultColumns,
   ]
 
+  // For display only: tasks in 'done' state get a virtual tableGroup equal to the
+  // translated "Done" label. This is never written to storage.
+  const withDoneTableGroup = (tasks: Task[]): Task[] =>
+    tasks.map((task) =>
+      task.state === State.done ? { ...task, tableGroup: t('kanban.done') } : task,
+    )
+
   // View definitions factory
-  const createViews = (nameSortState: 'none' | 'asc' | 'desc'): Record<TaskListKey, TaskList> => ({
+  const createViews = (
+    nameSortState: 'none' | 'asc' | 'desc',
+  ): Record<Exclude<TaskListKey, 'kanban'>, TaskList> => ({
     allInOne: {
       id: 'allInOne',
       label: t('table.allInOneTable'),
@@ -76,7 +85,8 @@ export function useTasksViews() {
       hiddenColumnKeys: getHiddenColumnsForView(),
       enableSorting: false,
       showFilter: false,
-      getTasks: (_: string): Task[] => getSortedTasks(tasksStore.tasks, nameSortState),
+      getTasks: (_: string): Task[] =>
+        withDoneTableGroup(getSortedTasks(tasksStore.tasks, nameSortState)),
     },
     byPriority: {
       id: 'byPriority',
@@ -86,9 +96,11 @@ export function useTasksViews() {
       enableSorting: true,
       showFilter: true,
       getTasks: (priority: string): Task[] =>
-        getSortedTasks(
-          tasksStore.tasks.filter((t) => t.priority.toString() === priority),
-          nameSortState,
+        withDoneTableGroup(
+          getSortedTasks(
+            tasksStore.tasks.filter((t) => t.priority.toString() === priority),
+            nameSortState,
+          ),
         ),
     },
     byState: {
@@ -98,6 +110,7 @@ export function useTasksViews() {
       hiddenColumnKeys: getHiddenColumnsForView(),
       enableSorting: true,
       showFilter: true,
+      // 'done' state already has its own category; no extra tableGroup override needed here
       getTasks: (state: string): Task[] =>
         getSortedTasks(
           tasksStore.tasks.filter((t) => capitalizeFirstLetter(t.state) === state),
@@ -112,7 +125,8 @@ export function useTasksViews() {
       hiddenColumnKeys: getHiddenColumnsForView(),
       enableSorting: true,
       showFilter: true,
-      getTasks: (tag: string): Task[] => getSortedTasks(getTasksByTag(tag), nameSortState),
+      getTasks: (tag: string): Task[] =>
+        withDoneTableGroup(getSortedTasks(getTasksByTag(tag), nameSortState)),
     },
   })
 

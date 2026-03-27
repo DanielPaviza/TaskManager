@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 
 import { computed, ref, watch } from 'vue'
 
+import { Priority } from '@/constants/taskPriority'
+import { State } from '@/constants/taskState'
 import { useSettingsStore } from '@/stores/settingsStore'
 import { Task } from '@/types/Task'
 import { loadTasks, saveTasks } from '@/utils/taskStorage'
@@ -94,6 +96,7 @@ export const useTasksStore = defineStore('tasks', () => {
   function addTask(task: Task): void {
     tasks.value.push(task)
     newTaskIds.value.add(task.id)
+    void save()
   }
 
   function removeTask(id: string): void {
@@ -105,6 +108,7 @@ export const useTasksStore = defineStore('tasks', () => {
       // Remove from new/edited tracking if present
       newTaskIds.value.delete(id)
       editedTaskIds.value.delete(id)
+      void save()
     }
   }
 
@@ -165,6 +169,7 @@ export const useTasksStore = defineStore('tasks', () => {
       const task = deletedTasks.value[index]
       tasks.value.push(task)
       deletedTasks.value.splice(index, 1)
+      void save()
     }
   }
 
@@ -172,6 +177,7 @@ export const useTasksStore = defineStore('tasks', () => {
     tasks.value.push(...deletedTasks.value)
     console.log('Restoring all deleted tasks:', deletedTasks.value)
     deletedTasks.value = []
+    void save()
   }
 
   function updateTask(id: string, updatedTask: Task): void {
@@ -181,6 +187,7 @@ export const useTasksStore = defineStore('tasks', () => {
     tasks.value[index] = updatedTask
     // Track as edited only if not already new
     if (!newTaskIds.value.has(id)) editedTaskIds.value.add(id)
+    void save()
   }
 
   function discardChanges(): void {
@@ -202,6 +209,9 @@ export const useTasksStore = defineStore('tasks', () => {
       .sort((a, b) => b[1] - a[1])
       .map(([project]) => project)
   })
+
+  const priorities = computed(() => Object.values(Priority) as number[])
+  const states = computed(() => Object.values(State) as string[])
 
   const tableGroups = computed(() => {
     if (tasksInProjectView.value.length === 0) return []
@@ -251,6 +261,8 @@ export const useTasksStore = defineStore('tasks', () => {
     renameTaskTag,
     discardChanges,
     projects,
+    priorities,
+    states,
     tableGroups,
     tags,
     newTaskIds,

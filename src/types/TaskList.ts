@@ -9,4 +9,4 @@ export type TaskList = {
   showFilter: boolean
   getTasks: (filterVal: string) => Task[]
 }
-export type TaskListKey = 'allInOne' | 'byTags' | 'byPriority' | 'byState'
+export type TaskListKey = 'allInOne' | 'byTags' | 'byPriority' | 'byState' | 'kanban'

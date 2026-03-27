@@ -17,7 +17,8 @@
         "height": 1080,
         "maximized": true,
         "focus": true,
-        "devtools": true
+        "devtools": true,
+        "dragDropEnabled": false
       }
     ],
     "withGlobalTauri": true,
