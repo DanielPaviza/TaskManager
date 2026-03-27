@@ -1,7 +1,7 @@
 import { ComputedRef, computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { TASK_FORM_DATA_DEFAULT } from '@/constants/spendingFormData'
+import { TASK_FORM_DATA_DEFAULT } from '@/constants/taskFormData'
 import { useTasksStore } from '@/stores/tasksStore'
 import { Task } from '@/types/Task'
 import { createTask } from '@/utils/taskFactory'

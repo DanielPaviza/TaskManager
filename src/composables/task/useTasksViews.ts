@@ -75,16 +75,6 @@ export function useTasksViews() {
       showFilter: false,
       getTasks: (_: string): Task[] => getSortedTasks(tasksStore.tasks, nameSortState),
     },
-    // byCategories: {
-    //   id: 'byCategories',
-    //   label: t('table.bySubCategories'),
-    //   categories: tasksStore.subCategories,
-    //   hiddenColumnKeys: getHiddenColumnsForView(['subCategory']),
-    //   enableSorting: true,
-    //   showFilter: true,
-    //   getTasks: (subCategory: string): Task[] =>
-    //     getSortedTasks(getTasksByProject(subCategory), nameSortState),
-    // },
     // TODO BY SEVERITY, STATE
     byTags: {
       id: 'byTags',

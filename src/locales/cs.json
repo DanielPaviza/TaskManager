@@ -11,8 +11,9 @@
   "columns": {
     "project": "Projekt",
     "createdAt": "Vytvořeno",
-    "free": "Ušetřeno",
-    "name": "Název",
+    "name": "Nadpis",
+    "priority": "Priorita",
+    "state": "Stav",
     "tags": "Tagy"
   },
   "common": {
@@ -226,7 +227,7 @@
     "viewTitle": "Zobrazení tabulky tasků"
   },
   "validation": {
-    "categoryRequired": "Kategorie je povinná",
-    "nameRequired": "Název je povinný"
+    "projectRequired": "Projekt je povinný",
+    "nameRequired": "Nadpis je povinný"
   }
 }

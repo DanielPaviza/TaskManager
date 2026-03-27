@@ -10,7 +10,7 @@ export function createTask(data?: Partial<Task>): Task {
     project: data?.project ?? '',
     name: data?.name ?? '',
     state: data?.state ?? 'todo',
-    severity: data?.severity ?? 'medium',
+    priority: data?.priority ?? 'medium',
     description: data?.description ?? null,
     tableGroup: data?.tableGroup ?? null,
     tags: data?.tags ?? [],

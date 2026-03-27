@@ -1,3 +1,4 @@
+import { Priority } from '@/constants/Priority'
 import { TaskDocument } from '@/types/TaskDocument'
 
 export interface Task {
@@ -5,7 +6,7 @@ export interface Task {
   project: string
   name: string
   state: 'todo' | 'doing' | 'done'
-  severity: 'low' | 'medium' | 'high'
+  priority: Priority
   description?: string | null
   tableGroup?: string | null
   tags: string[]
