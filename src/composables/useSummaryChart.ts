@@ -26,21 +26,16 @@ export function useSummaryChart(options: ChartOptions) {
   const { stats, sortBy, labelKey, countLabelKey, customColors } = options
   const { t } = useI18n()
 
-  const chartLabels = computed(() => stats.value.map((stat) => `${stat.name} (${stat.percent}%)`))
+  const chartLabels = computed(() => stats.value.map((stat) => `${stat.name}`))
 
   const chartDatasets = computed<ChartDataset[]>(() => {
     const getData = (): number[] => {
       switch (sortBy.value) {
         case 'count-desc':
-        case 'visits-desc':
-          return stats.value.map((stat) => stat.visits ?? stat.count)
-        case 'avg-desc':
-          return stats.value.map((stat) => stat.avgPerVisit ?? 0)
-        case 'price-desc':
-        case 'price-asc':
+          return stats.value.map((stat) => stat.count)
         case 'alphabetical':
         default:
-          return stats.value.map((stat) => stat.price)
+          return stats.value.map((stat) => stat.count)
       }
     }
 
@@ -48,12 +43,6 @@ export function useSummaryChart(options: ChartOptions) {
       switch (sortBy.value) {
         case 'count-desc':
           return countLabelKey ? t(countLabelKey) : t(labelKey)
-        case 'visits-desc':
-          return t('summary.storeVisits')
-        case 'avg-desc':
-          return t('summary.avgSpendingPerVisit')
-        case 'price-desc':
-        case 'price-asc':
         case 'alphabetical':
         default:
           return t(labelKey)

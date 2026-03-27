@@ -2,6 +2,7 @@
   import ButtonNavigation from '@components/shared/ButtonNavigation.vue'
   import DeletedTasksTable from '@components/tasksList/DeletedTasksTable.vue'
   import TasksCategoryTable from '@components/tasksList/TasksCategoryTable.vue'
+  import TasksDataTable from '@components/tasksList/dataTable/TasksDataTable.vue'
   import { NInput, NSelect } from 'naive-ui'
 
   import { computed, ref, watch } from 'vue'
@@ -81,6 +82,7 @@
       const filterValue = nameFilter.value.toLowerCase()
       return category.toLowerCase().includes(filterValue)
     })
+
     return getSortedCategories(filteredCategories, currentView.value)
   })
 
@@ -161,7 +163,7 @@
     <TasksCategoryTable
       v-for="category in filteredSortedCategories"
       :key="category"
-      :category="category"
+      :title="category"
       :tasks="currentView.getTasks(category)"
       :columns="columns"
       :is-collapsed-default="currentView.id != defaultView.id"

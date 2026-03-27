@@ -1,18 +1,18 @@
 <script setup lang="ts">
-  import TableRow from '@components/spendingsList/dataTable/shared/TableRow.vue'
+  import TableRow from '@components/tasksList/dataTable/shared/TableRow.vue'
   import { ChevronForwardOutline } from '@vicons/ionicons5'
   import { NIcon } from 'naive-ui'
 
   import { ref, watch } from 'vue'
 
   import { useSettingsStore } from '@/stores/settingsStore'
-  import type { Spending } from '@/types/Task'
-  import type { SpendingColumn } from '@/types/TaskColumn'
+  import type { Task } from '@/types/Task'
+  import type { TaskColumn } from '@/types/TaskColumn'
 
   const { tableGroup, items, columns, isShownDefault } = defineProps<{
     tableGroup: string
-    items: Spending[]
-    columns: SpendingColumn[]
+    items: Task[]
+    columns: TaskColumn[]
     isShownDefault?: boolean
   }>()
 

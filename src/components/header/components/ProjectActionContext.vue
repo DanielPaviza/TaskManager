@@ -21,7 +21,7 @@
   const actionOptions: ActionContextItem[] = [
     {
       label: t('actions.edit'),
-      key: 'editCategory',
+      key: 'editProject',
       icon: renderIcon(BuildOutline, 'orange'),
       handleAction: () => {
         onEdit(new MouseEvent('click'))

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import SpendingStatusIndicator from '@components/spendingsList/SpendingStatusIndicator.vue'
+  import TaskStatusIndicator from '@components/tasksList/TaskStatusIndicator.vue'
 
   import { type VNode, ref } from 'vue'
   import { useRouter } from 'vue-router'
 
-  import TasksDataTableAction from '@/components/spendingsList/TasksDataTableAction.vue'
-  import TasksDataTableActionContext from '@/components/spendingsList/TasksDataTableActionContext.vue'
+  import TasksDataTableAction from '@/components/tasksList/TasksDataTableAction.vue'
+  import TasksDataTableActionContext from '@/components/tasksList/TasksDataTableActionContext.vue'
   import { useTaskStatus } from '@/composables/task/useTaskStatus'
   import type { Task } from '@/types/Task'
   import type { TaskColumn } from '@/types/TaskColumn'
@@ -67,7 +67,7 @@
       <template v-else>
         {{ getCellContent(column, row, rowIndex) }}
       </template>
-      <SpendingStatusIndicator class="me-2" :status="getTaskStatus(row.id)" />
+      <TaskStatusIndicator class="me-2" :status="getTaskStatus(row.id)" />
     </td>
     <td v-if="showActions" class="px-2 border-b border-blue-200">
       <div class="opacity-75 hover:opacity-100 mb-1">

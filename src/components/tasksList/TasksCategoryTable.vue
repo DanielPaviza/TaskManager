@@ -6,12 +6,12 @@
   import { sortTasksByDefault } from '@/utils/tableUtils'
 
   const {
-    category,
+    title,
     tasks: unorderedTasks,
     columns,
     isCollapsedDefault = false,
   } = defineProps<{
-    category: string
+    title: string
     tasks: Task[]
     columns: TaskColumn[]
     isCollapsedDefault?: boolean
@@ -25,7 +25,7 @@
   <div class="overflow-x-auto my-8">
     <slot
       :data="tasks"
-      :title="category"
+      :title="title"
       :columns="columns"
       :is-collapsed-default="isCollapsedDefault"
     />

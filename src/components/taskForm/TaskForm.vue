@@ -163,7 +163,7 @@
       <template #footer>
         <FormActions
           show-delete
-          :save-text="isEditMode ? t('form.saveChangesButton') : t('form.createPurchaseButton')"
+          :save-text="isEditMode ? t('form.saveChangesButton') : t('form.createTaskButton')"
           @save="handleSave"
           @delete="handleDelete"
           @cancel="closeDrawer"

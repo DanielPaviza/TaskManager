@@ -1,4 +1,4 @@
-import { Spending } from '@/types/Task'
+import { Task } from '@/types/Task'
 
 export type TaskList = {
   id: TaskListKey
@@ -7,6 +7,6 @@ export type TaskList = {
   hiddenColumnKeys: string[]
   enableSorting: boolean
   showFilter: boolean
-  getTasks: (filterVal: string) => Spending[]
+  getTasks: (filterVal: string) => Task[]
 }
 export type TaskListKey = 'allInOne' | 'byTags'

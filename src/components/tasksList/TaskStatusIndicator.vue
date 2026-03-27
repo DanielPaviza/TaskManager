@@ -12,7 +12,7 @@
 <template>
   <div v-if="status" class="status-indicator">
     <Tooltip
-      :text="status === 'new' ? t('table.newPurchase') : t('table.editedPurchase')"
+      :text="status === 'new' ? t('table.newTask') : t('table.editedTask')"
       :color="status === 'new' ? 'var(--color-green-500)' : 'var(--color-orange-400)'"
     >
       <div

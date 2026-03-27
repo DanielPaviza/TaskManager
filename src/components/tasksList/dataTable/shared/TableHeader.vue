@@ -1,14 +1,14 @@
 <script setup lang="ts">
   import Tooltip from '@components/shared/Tooltip.vue'
-  import SortIndicator from '@components/spendingsList/SortIndicator.vue'
+  import SortIndicator from '@components/tasksList/SortIndicator.vue'
 
   import { onBeforeUpdate, ref } from 'vue'
   import type { ComponentPublicInstance } from 'vue'
 
-  import type { SpendingColumn } from '@/types/TaskColumn'
+  import type { TaskColumn } from '@/types/TaskColumn'
 
   const { columns, sortState, additionalColumnTitle } = defineProps<{
-    columns: SpendingColumn[]
+    columns: TaskColumn[]
     sortState: { key: string | null; direction: 'asc' | 'desc' | null }
     additionalColumnTitle?: string
   }>()

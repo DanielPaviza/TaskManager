@@ -31,7 +31,7 @@
     stats: sortedStats,
     sortBy,
     labelKey: 'summary.expensesByTags',
-    countLabelKey: 'summary.purchasesByTags',
+    countLabelKey: 'summary.tasksByTagsCount',
   })
 
   const sortOptions = computed(() => [

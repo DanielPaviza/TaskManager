@@ -134,7 +134,7 @@
               :status="isDefaultHiddenColumnsValid ? 'success' : 'error'"
             />
             <div v-if="!isDefaultHiddenColumnsValid" class="text-red-500 text-sm mt-1">
-              {{ t('settings.hiddenSpendingColumnsValidation') }}
+              {{ t('settings.hiddenTaskColumnsValidation') }}
             </div>
           </div>
         </n-form-item>

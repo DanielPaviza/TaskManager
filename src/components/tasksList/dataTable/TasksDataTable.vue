@@ -3,14 +3,14 @@
 
   import { computed, ref } from 'vue'
 
-  import CategoryActionContext from '@/components/header/components/CategoryActionContext.vue'
-  import SpendingTableGroup from '@/components/spendingsList/SpendingTableGroup.vue'
-  import CollapsedTableView from '@/components/spendingsList/dataTable/shared/CollapsedTableView.vue'
-  import TableFilterRow from '@/components/spendingsList/dataTable/shared/TableFilterRow.vue'
-  import TableFooter from '@/components/spendingsList/dataTable/shared/TableFooter.vue'
-  import TableHeader from '@/components/spendingsList/dataTable/shared/TableHeader.vue'
-  import TableRow from '@/components/spendingsList/dataTable/shared/TableRow.vue'
-  import TableToolbar from '@/components/spendingsList/dataTable/shared/TableToolbar.vue'
+  import ProjectActionContext from '@/components/header/components/ProjectActionContext.vue'
+  import TaskTableGroup from '@/components/tasksList/TaskTableGroup.vue'
+  import CollapsedTableView from '@/components/tasksList/dataTable/shared/CollapsedTableView.vue'
+  import TableFilterRow from '@/components/tasksList/dataTable/shared/TableFilterRow.vue'
+  import TableFooter from '@/components/tasksList/dataTable/shared/TableFooter.vue'
+  import TableHeader from '@/components/tasksList/dataTable/shared/TableHeader.vue'
+  import TableRow from '@/components/tasksList/dataTable/shared/TableRow.vue'
+  import TableToolbar from '@/components/tasksList/dataTable/shared/TableToolbar.vue'
   import { useTableFilter } from '@/composables/table/useTableFilter'
   import { useTableGrouping } from '@/composables/table/useTableGrouping'
   import { useTableSort } from '@/composables/table/useTableSort'
@@ -86,9 +86,9 @@
       @toggle-collapse="toggleCollapse"
       @contextmenu="handleContextMenu"
     />
-    <CategoryActionContext
+    <ProjectActionContext
       v-if="canOpenSettings"
-      :category="title"
+      :project="title"
       :mouse-event="actionContextMouseEvent"
       :on-edit="() => emit('openSettings')"
     />
@@ -121,7 +121,7 @@
           </template>
 
           <!-- TableGroup group -->
-          <SpendingTableGroup
+          <TaskTableGroup
             v-else-if="group.type === 'group' && group.tableGroup && group.items"
             :table-group="group.tableGroup"
             :items="group.items"

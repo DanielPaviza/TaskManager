@@ -35,17 +35,6 @@
         <CarouselItem navigate-dir="next" @navigation-action="prevSlide">
           <TagSummary />
         </CarouselItem>
-        <CarouselItem navigate-dir="next" @navigation-action="nextSlide">
-          <TagSummary />
-        </CarouselItem>
-      </CarouselSlide>
-      <CarouselSlide>
-        <CarouselItem navigate-dir="next" @navigation-action="prevSlide">
-          <TagSummary />
-        </CarouselItem>
-        <CarouselItem navigate-dir="next" @navigation-action="nextSlide">
-          <TagSummary />
-        </CarouselItem>
       </CarouselSlide>
     </n-carousel>
   </div>

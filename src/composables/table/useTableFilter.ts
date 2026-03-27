@@ -1,9 +1,9 @@
 import { computed, ref } from 'vue'
 
-import type { Spending } from '@/types/Task'
-import type { SpendingColumn } from '@/types/TaskColumn'
+import type { Task } from '@/types/Task'
+import type { TaskColumn } from '@/types/TaskColumn'
 
-export function useTableFilter(data: () => Spending[], columns: () => SpendingColumn[]) {
+export function useTableFilter(data: () => Task[], columns: () => TaskColumn[]) {
   const columnFilters = ref<Record<string, string>>({})
 
   const filteredData = computed(() => {

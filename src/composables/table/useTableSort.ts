@@ -1,9 +1,9 @@
 import { computed, ref } from 'vue'
 
-import type { Spending } from '@/types/Task'
-import type { SpendingColumn } from '@/types/TaskColumn'
+import type { Task } from '@/types/Task'
+import type { TaskColumn } from '@/types/TaskColumn'
 
-export function useTableSort(data: () => Spending[], columns: () => SpendingColumn[]) {
+export function useTableSort(data: () => Task[], columns: () => TaskColumn[]) {
   const sortState = ref<{ key: string | null; direction: 'asc' | 'desc' | null }>({
     key: null,
     direction: null,

@@ -3,18 +3,18 @@
 
   import { nextTick, ref, watch } from 'vue'
 
-  import { useSpendingDataTableAction } from '@/composables/task/useTaskDataTableAction'
-  import type { Spending } from '@/types/Task'
+  import { useTaskDataTableAction } from '@/composables/task/useTaskDataTableAction'
+  import type { Task } from '@/types/Task'
 
-  const { spending, mouseEvent } = defineProps<{
-    spending: Spending
+  const { task, mouseEvent } = defineProps<{
+    task: Task
     mouseEvent?: MouseEvent | null
   }>()
 
   const isOpen = ref<boolean>(false)
   const x = ref(0)
   const y = ref(0)
-  const { actionOptions, handleActionSelect } = useSpendingDataTableAction()
+  const { actionOptions, handleActionSelect } = useTaskDataTableAction()
 
   const openContextMenu = (event: MouseEvent): void => {
     event.preventDefault()
@@ -50,7 +50,7 @@
     :on-clickoutside="() => (isOpen = false)"
     @mouseleave="isOpen = false"
     @update:show="(v) => (isOpen = v)"
-    @select="handleActionSelect($event, spending)"
+    @select="handleActionSelect($event, task)"
   >
   </n-dropdown>
 </template>

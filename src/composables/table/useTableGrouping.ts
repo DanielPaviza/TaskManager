@@ -1,19 +1,19 @@
 import { computed } from 'vue'
 
-import type { Spending } from '@/types/Task'
+import type { Task } from '@/types/Task'
 
 export interface GroupedData {
   type: 'group' | 'item'
   tableGroup?: string
-  items?: Spending[]
-  item?: Spending
+  items?: Task[]
+  item?: Task
 }
 
-export function useTableGrouping(sortedData: () => Spending[]) {
+export function useTableGrouping(sortedData: () => Task[]) {
   const groupedData = computed<GroupedData[]>(() => {
     const result: GroupedData[] = []
-    const tableGroupMap = new Map<string, Spending[]>()
-    const itemsWithoutTableGroup: Spending[] = []
+    const tableGroupMap = new Map<string, Task[]>()
+    const itemsWithoutTableGroup: Task[] = []
 
     // Group items by tableGroup
     for (const item of sortedData())

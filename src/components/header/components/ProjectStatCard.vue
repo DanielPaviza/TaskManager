@@ -59,7 +59,7 @@
 
       <div class="mb-5">
         <div class="text-xs text-slate-500 flex flex-wrap items-center gap-1">
-          <span>{{ count }}× {{ $t('common.purchases') }}</span>
+          <span>{{ count }}× {{ $t('common.task') }}</span>
           <span class="text-slate-300">•</span>
         </div>
       </div>

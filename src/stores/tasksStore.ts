@@ -133,12 +133,12 @@ export const useTasksStore = defineStore('tasks', () => {
     if (settingsStore.settings.defaultProjectView === oldProject) setProjectViewSettings(newProject)
   }
 
-  function removeTaskTag(tag: string, acrossAllCategories: boolean): void {
+  function removeTaskTag(tag: string, acrossAllProjects: boolean): void {
     for (const task of tasks.value)
       if (
         task.tags &&
         task.tags.includes(tag) &&
-        (acrossAllCategories || task.project === projectView.value)
+        (acrossAllProjects || task.project === projectView.value)
       ) {
         const updatedTags = task.tags.filter((t) => t !== tag)
         const updatedTask = { ...task, tags: updatedTags }
@@ -146,12 +146,12 @@ export const useTasksStore = defineStore('tasks', () => {
       }
   }
 
-  function renameTaskTag(oldTag: string, newTag: string, acrossAllCategories: boolean): void {
+  function renameTaskTag(oldTag: string, newTag: string, acrossAllProjects: boolean): void {
     for (const task of tasks.value)
       if (
         task.tags &&
         task.tags.includes(oldTag) &&
-        (acrossAllCategories || task.project === projectView.value)
+        (acrossAllProjects || task.project === projectView.value)
       ) {
         const updatedTags = task.tags.map((t) => (t === oldTag ? newTag : t))
         const updatedTask = { ...task, tags: updatedTags }

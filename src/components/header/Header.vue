@@ -70,7 +70,7 @@
                 <AddOutline />
               </n-icon>
               <div class="font-bold">
-                {{ $t('header.addNewPurchase') }}
+                {{ $t('header.addNewTask') }}
               </div>
             </n-button>
           </div>

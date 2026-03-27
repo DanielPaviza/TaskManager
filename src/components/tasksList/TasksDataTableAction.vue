@@ -1,14 +1,14 @@
 <script setup lang="ts">
   import { NButton, NDropdown } from 'naive-ui'
 
-  import { useSpendingDataTableAction } from '@/composables/task/useTaskDataTableAction'
-  import type { Spending } from '@/types/Task'
+  import { useTaskDataTableAction } from '@/composables/task/useTaskDataTableAction'
+  import type { Task } from '@/types/Task'
 
-  const { spending } = defineProps<{
-    spending: Spending
+  const { task } = defineProps<{
+    task: Task
   }>()
 
-  const { actionOptions, handleActionSelect } = useSpendingDataTableAction()
+  const { actionOptions, handleActionSelect } = useTaskDataTableAction()
 </script>
 
 <template>
@@ -20,7 +20,7 @@
           label: option.label,
         }))
       "
-      @select="handleActionSelect($event, spending)"
+      @select="handleActionSelect($event, task)"
     >
       <n-button @click.stop>
         <div class="flex flex-col items-center justify-center font-bold text-[16px]">

@@ -51,6 +51,11 @@ export function useTasksViews() {
         return nameSortState === 'asc' ? comparison : -comparison
       })
 
+    console.log(
+      'Sorted tasks:',
+      sorted.map((t) => t.name),
+    ) // Debug log to verify sorting
+
     return sorted
   }
 

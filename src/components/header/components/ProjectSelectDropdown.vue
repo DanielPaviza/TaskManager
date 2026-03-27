@@ -29,8 +29,8 @@
     isOpenModel.value = !isOpenModel.value
   }
 
-  const displayedCategory = computed(() => {
-    return projectView.value ? projectView.value : t('common.allCategories')
+  const displayedProject = computed(() => {
+    return projectView.value ? projectView.value : t('common.allProjects')
   })
 </script>
 
@@ -44,13 +44,11 @@
     @click="toggleOpen"
   >
     <div class="flex items-center gap-3 flex-1 min-w-0">
-      <div class="text-sm text-slate-500 whitespace-nowrap">
-        {{ t('header.selectedCategory') }}:
-      </div>
+      <div class="text-sm text-slate-500 whitespace-nowrap">{{ t('header.selectedProject') }}:</div>
       <div
         class="text-lg font-semibold text-blue-900 whitespace-nowrap overflow-hidden text-ellipsis"
       >
-        {{ displayedCategory }}
+        {{ displayedProject }}
       </div>
     </div>
     <n-icon size="24" class="text-blue-500 ml-2 shrink-0 transition-transform duration-200">

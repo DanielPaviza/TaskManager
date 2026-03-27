@@ -31,7 +31,7 @@
     canBeEdited: boolean
   }
 
-  const monthLabel = computed(() => t('categoryPanel.month'))
+  const monthLabel = computed(() => t('projectPanel.month'))
 
   const cards = computed<ProjectCardVm[]>(() => {
     const all = allProjectsStat.value
@@ -39,7 +39,7 @@
     const allCard: ProjectCardVm = {
       key: '__all__',
       project: null,
-      title: t('common.allCategories'),
+      title: t('common.allProjects'),
       count: all.count,
       color: all.color,
       selected: isSelected(null),
@@ -77,12 +77,12 @@
 </script>
 
 <template>
-  <div class="category-selection-panel-root flex h-full flex-col">
+  <div class="project-selection-panel-root flex h-full flex-col">
     <div
       class="sticky top-0 z-10 backdrop-blur-sm pt-8 pb-3 mb-4 border-b border-blue flex justify-between items-center"
     >
       <h2 class="text-2xl font-bold text-blue">
-        {{ t('header.selectCategory') }}
+        {{ t('header.selectProject') }}
       </h2>
       <n-button tertiary color="#3b82f6" @click="emit('close')">
         <n-icon size="32">
@@ -113,7 +113,7 @@
 </template>
 
 <style scoped>
-  .category-selection-panel-root {
+  .project-selection-panel-root {
     min-height: 0;
   }
 </style>

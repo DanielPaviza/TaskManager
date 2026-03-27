@@ -1,5 +1,5 @@
 import Home from '@views/Home.vue'
-import SpendingForm from '@views/SpendingForm.vue'
+import TaskForm from '@views/TaskForm.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -16,13 +16,13 @@ const router = createRouter({
       children: [
         {
           path: 'new',
-          name: 'new-spending',
-          component: SpendingForm,
+          name: 'new-task',
+          component: TaskForm,
         },
         {
           path: 'edit/:id',
-          name: 'edit-spending',
-          component: SpendingForm,
+          name: 'edit-task',
+          component: TaskForm,
         },
         {
           path: 'settings',
