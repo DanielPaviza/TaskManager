@@ -193,7 +193,7 @@
     "total": "Total"
   },
   "table": {
-    "allExpenses": "All tasks",
+    "allTasks": "All tasks",
     "allInOneTable": "All in one table",
     "byPriority": "By priority",
     "byState": "By state",

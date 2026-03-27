@@ -193,7 +193,7 @@
     "total": "Celkem"
   },
   "table": {
-    "allExpenses": "Všechny výdaje",
+    "allTasks": "Všechny tasky",
     "allInOneTable": "Vše v jedné tabulce",
     "byPriority": "Dle priority",
     "byState": "Dle stavu",
@@ -224,9 +224,9 @@
     "currencyRequired": "Symbol měny je povinný"
   },
   "kanban": {
-    "todo": "K udělání",
-    "doing": "Probíhá",
-    "done": "Hotovo",
+    "todo": "Todo",
+    "doing": "Doing",
+    "done": "Done",
     "moveLeft": "Přesunout doleva",
     "moveRight": "Přesunout doprava",
     "dropHere": "Sem přetáhnout task"

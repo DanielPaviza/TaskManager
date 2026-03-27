@@ -81,7 +81,7 @@ export function useTasksViews() {
     allInOne: {
       id: 'allInOne',
       label: t('table.allInOneTable'),
-      categories: [t('table.allExpenses')],
+      categories: [t('table.allTasks')],
       hiddenColumnKeys: getHiddenColumnsForView(),
       enableSorting: false,
       showFilter: false,
@@ -92,7 +92,7 @@ export function useTasksViews() {
       id: 'byPriority',
       label: t('table.byPriority'),
       categories: Object.keys(Priority) as string[],
-      hiddenColumnKeys: getHiddenColumnsForView(),
+      hiddenColumnKeys: getHiddenColumnsForView(['priority']),
       enableSorting: true,
       showFilter: true,
       getTasks: (priority: string): Task[] =>
@@ -107,7 +107,7 @@ export function useTasksViews() {
       id: 'byState',
       label: t('table.byState'),
       categories: Object.values(State).map((s) => capitalizeFirstLetter(s)),
-      hiddenColumnKeys: getHiddenColumnsForView(),
+      hiddenColumnKeys: getHiddenColumnsForView(['state']),
       enableSorting: true,
       showFilter: true,
       // 'done' state already has its own category; no extra tableGroup override needed here
@@ -122,7 +122,7 @@ export function useTasksViews() {
       id: 'byTags',
       label: t('table.byTags'),
       categories: allTags.value,
-      hiddenColumnKeys: getHiddenColumnsForView(),
+      hiddenColumnKeys: getHiddenColumnsForView(['tags']),
       enableSorting: true,
       showFilter: true,
       getTasks: (tag: string): Task[] =>

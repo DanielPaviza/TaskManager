@@ -2,10 +2,12 @@ import { Ref, ref } from 'vue'
 import { h, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import PriorityDot from '@/components/shared/PriorityDot.vue'
 import { formatDateLocalized } from '@/composables/useDateFormat'
 import { useTasksStore } from '@/stores/tasksStore'
 import { TaskColumn } from '@/types/TaskColumn'
 import { capitalizeFirstLetter, truncateText } from '@/utils/formatUtils'
+import { getPriorityColor } from '@/utils/priorityUtils'
 
 export function useTasksColumns(): { columns: Ref<TaskColumn[]> } {
   const { t, locale } = useI18n()
@@ -56,18 +58,26 @@ export function useTasksColumns(): { columns: Ref<TaskColumn[]> } {
         key: 'priority',
         isHidden: false,
         filterEnabled: true,
-        selectFilterEnabled: false,
+        selectFilterEnabled: true,
         tooltip: null,
         sortFn: (a, b) => a.priority - b.priority,
         filterVal: (row) => row.priority.toString(),
-        render: (row) => row.priority,
+        render: (row) =>
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '6px' } }, [
+            h(PriorityDot, { priority: row.priority, size: 10 }),
+            h(
+              'span',
+              { style: { color: getPriorityColor(row.priority), fontWeight: '600' } },
+              String(row.priority),
+            ),
+          ]),
       },
       {
         title: t('columns.state'),
         key: 'state',
         isHidden: false,
         filterEnabled: true,
-        selectFilterEnabled: false,
+        selectFilterEnabled: true,
         tooltip: null,
         sortFn: (a, b) => a.state.localeCompare(b.state),
         filterVal: (row) => row.state,

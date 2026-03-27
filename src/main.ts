@@ -17,6 +17,30 @@ const i18n = createI18n({
     cs,
     en,
   },
+  datetimeFormats: {
+    en: {
+      short: { year: 'numeric', month: '2-digit', day: '2-digit' },
+      long: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'short', // e.g. Mon, Tue
+        hour: '2-digit',
+        minute: '2-digit',
+      },
+    },
+    cs: {
+      short: { year: 'numeric', month: '2-digit', day: '2-digit' },
+      long: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+      },
+    },
+  },
 })
 
 const app = createApp(App)

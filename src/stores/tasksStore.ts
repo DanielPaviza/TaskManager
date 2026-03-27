@@ -142,7 +142,7 @@ export const useTasksStore = defineStore('tasks', () => {
       if (
         task.tags &&
         task.tags.includes(tag) &&
-        (acrossAllProjects || task.project === projectView.value)
+        (acrossAllProjects || projectView.value === null || task.project === projectView.value)
       ) {
         const updatedTags = task.tags.filter((t) => t !== tag)
         const updatedTask = { ...task, tags: updatedTags }
@@ -155,7 +155,7 @@ export const useTasksStore = defineStore('tasks', () => {
       if (
         task.tags &&
         task.tags.includes(oldTag) &&
-        (acrossAllProjects || task.project === projectView.value)
+        (acrossAllProjects || projectView.value === null || task.project === projectView.value)
       ) {
         const updatedTags = task.tags.map((t) => (t === oldTag ? newTag : t))
         const updatedTask = { ...task, tags: updatedTags }

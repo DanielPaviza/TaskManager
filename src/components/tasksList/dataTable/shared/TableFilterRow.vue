@@ -3,12 +3,12 @@
 
   import { useI18n } from 'vue-i18n'
 
-  import type { SpendingColumn } from '@/types/TaskColumn'
+  import type { TaskColumn } from '@/types/TaskColumn'
 
   const { t } = useI18n()
 
   const { columns, columnFilters, columnFilterOptions } = defineProps<{
-    columns: SpendingColumn[]
+    columns: TaskColumn[]
     columnFilters: Record<string, string>
     columnFilterOptions: Record<string, Array<{ label: string; value: string }>>
   }>()
