@@ -72,3 +72,8 @@ export function truncateText(text: string, maxLength: number): string {
 
   return text.slice(0, maxLength - 3) + '...'
 }
+
+export function capitalizeFirstLetter(text: string): string {
+  if (!text) return text
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}

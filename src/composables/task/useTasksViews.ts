@@ -1,10 +1,13 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { Priority } from '@/constants/taskPriority'
+import { State } from '@/constants/taskState'
 import { useSettingsStore } from '@/stores/settingsStore'
 import { useTasksStore } from '@/stores/tasksStore'
 import type { Task } from '@/types/Task'
 import { TaskList, TaskListKey } from '@/types/TaskList'
+import { capitalizeFirstLetter } from '@/utils/formatUtils'
 
 export function useTasksViews() {
   const { t } = useI18n()
@@ -74,6 +77,32 @@ export function useTasksViews() {
       enableSorting: false,
       showFilter: false,
       getTasks: (_: string): Task[] => getSortedTasks(tasksStore.tasks, nameSortState),
+    },
+    byPriority: {
+      id: 'byPriority',
+      label: t('table.byPriority'),
+      categories: Object.keys(Priority) as string[],
+      hiddenColumnKeys: getHiddenColumnsForView(),
+      enableSorting: true,
+      showFilter: true,
+      getTasks: (priority: string): Task[] =>
+        getSortedTasks(
+          tasksStore.tasks.filter((t) => t.priority.toString() === priority),
+          nameSortState,
+        ),
+    },
+    byState: {
+      id: 'byState',
+      label: t('table.byState'),
+      categories: Object.values(State).map((s) => capitalizeFirstLetter(s)),
+      hiddenColumnKeys: getHiddenColumnsForView(),
+      enableSorting: true,
+      showFilter: true,
+      getTasks: (state: string): Task[] =>
+        getSortedTasks(
+          tasksStore.tasks.filter((t) => capitalizeFirstLetter(t.state) === state),
+          nameSortState,
+        ),
     },
     // TODO BY SEVERITY, STATE
     byTags: {

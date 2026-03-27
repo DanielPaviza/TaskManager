@@ -30,6 +30,8 @@
   // Persistent per-view name filters
   const nameFiltersByView = ref<Record<TaskListKey, string>>({
     allInOne: '',
+    byPriority: '',
+    byState: '',
     byTags: '',
   })
 

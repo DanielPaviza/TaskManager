@@ -207,6 +207,8 @@
     "allExpenses": "Všechny výdaje",
     "allInOneTable": "Vše v jedné tabulce",
     "byProjects": "Dle projektů",
+    "byPriority": "Dle priority",
+    "byState": "Dle stavu",
     "byTags": "Dle tagů",
     "clearFiltersAndSorting": "Vymazat filtry a řazení",
     "collapseTable": "Zabalit tabulku",

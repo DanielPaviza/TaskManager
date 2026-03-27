@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 
+import { Priority } from '@/constants/taskPriority'
 import type { Task } from '@/types/Task'
 
 export function createTask(data?: Partial<Task>): Task {
@@ -10,7 +11,7 @@ export function createTask(data?: Partial<Task>): Task {
     project: data?.project ?? '',
     name: data?.name ?? '',
     state: data?.state ?? 'todo',
-    priority: data?.priority ?? 'medium',
+    priority: data?.priority ?? Priority[2],
     description: data?.description ?? null,
     tableGroup: data?.tableGroup ?? null,
     tags: data?.tags ?? [],

@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { formatDateLocalized } from '@/composables/useDateFormat'
 import { useTasksStore } from '@/stores/tasksStore'
 import { TaskColumn } from '@/types/TaskColumn'
-import { truncateText } from '@/utils/formatUtils'
+import { capitalizeFirstLetter, truncateText } from '@/utils/formatUtils'
 
 export function useTasksColumns(): { columns: Ref<TaskColumn[]> } {
   const { t, locale } = useI18n()
@@ -71,7 +71,7 @@ export function useTasksColumns(): { columns: Ref<TaskColumn[]> } {
         tooltip: null,
         sortFn: (a, b) => a.state.localeCompare(b.state),
         filterVal: (row) => row.state,
-        render: (row) => truncateText(row.state, 40),
+        render: (row) => capitalizeFirstLetter(truncateText(row.state, 40)),
       },
       {
         title: t('columns.createdAt'),
